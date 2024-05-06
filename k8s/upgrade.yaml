@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amup
+  template:
+    metadata:
+      labels:
+        app: amup
+    spec:
+      containers:
+      - name: amup
+        image: aaronwang0509/k8sam:1.1.7
+        ports:
+        - containerPort: 18080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: amup-service
+spec:
+  type: NodePort
+  ports:
+  - port: 18080
+    nodePort: 30081
+  selector:
+    app: amup
