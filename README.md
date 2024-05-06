@@ -3,7 +3,7 @@
 This guide describes the process to upgrade an AM 7.1.4 Kubernetes cluster with external replicated Directory Servers (DS) without downtime.
 
 ## Upgrade Steps Overview
-1. **Stop and Upgrade Directory Servers (DS):**
+1. **Upgrade Directory Servers (DS):**
     - Stop DS1, upgrade, and restart.
     - Repeat the process for other DS instances.
 
