@@ -1,4 +1,4 @@
-# Upgrade Process for AM 7.1.4 Kubernetes Cluster
+# Upgrade Process for AM Kubernetes Cluster
 
 This guide describes the process to upgrade an AM 7.1.4 Kubernetes cluster with external replicated Directory Servers (DS) without downtime.
 
