@@ -1,9 +1,6 @@
 # .war files in any directory
 *.war
 
-# Amster.zip in any directory
-Amster*.zip
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
