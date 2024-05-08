@@ -1,6 +1,6 @@
 # Upgrade Process for AM Kubernetes Cluster
 
-This guide describes the process to upgrade an AM 7.1.4 Kubernetes cluster with external replicated Directory Servers (DS) without downtime.
+This guide describes the process of upgrading an AM 7.1.4 Kubernetes cluster with external replicated Directory Servers (DS) to AM 7.4.0 without downtime.
 
 ## Upgrade Steps Overview
 1. **Upgrade Directory Servers (DS):**
@@ -8,9 +8,10 @@ This guide describes the process to upgrade an AM 7.1.4 Kubernetes cluster with 
     - Repeat the process for other DS instances.
 
 2. **Upgrade AM Kubernetes Cluster:**
+    - Run the upgrade job on the cluster.
     - Build an image with the new AM WAR file.
-    - Start a new cluster alongside the existing one.
-    - Run tests, and upon passing, shut down the old cluster.
+    - Config the cluster deployment with new image.
+    - Run tests.
 
 ## Upgrade Diagram
 ![Upgrade Process Diagram](upgrade_diagram.png)
