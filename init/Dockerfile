@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y unzip gettext-base netcat
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy your ForgeRock AM WAR file into the webapps directory
-COPY AM-7.3.0.war /usr/local/tomcat/webapps/openam.war
+COPY AM-7.1.4.war /usr/local/tomcat/webapps/openam.war
 
 # Optional: If you need to modify the server.xml or other config files
 RUN rm -rf /usr/local/tomcat/conf/server.xml
@@ -21,9 +21,9 @@ COPY conf/setenv.sh /usr/local/tomcat/bin/
 RUN chmod +x /usr/local/tomcat/bin/*.sh
 
 # Copy Amster.zip into the working directory and unzip it
-COPY Amster-7.3.0.zip /usr/local/tomcat/
-RUN unzip /usr/local/tomcat/Amster-7.3.0.zip -d /usr/local/tomcat/amster
-RUN rm /usr/local/tomcat/Amster-7.3.0.zip
+COPY Amster-7.4.0.zip /usr/local/tomcat/
+RUN unzip /usr/local/tomcat/Amster-7.4.0.zip
+RUN rm /usr/local/tomcat/Amster-7.4.0.zip
 COPY install_am.amster.template /usr/local/tomcat/amster/
 
 # Expose the port Tomcat will run on

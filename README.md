@@ -32,54 +32,55 @@ export DEPLOYMENT_KEY=ACDDRasfQ4DEOCRM8u4963oSCVMSnA5CBVN1bkVDALAdRZFYWf1w2yw
 echo $DEPLOYMENT_KEY
 
 ./setup \
-    --serverId ds1 \
-    --deploymentKey $DEPLOYMENT_KEY \
-    --deploymentKeyPassword password \
-    --rootUserDN uid=admin \
-    --rootUserPassword password \
-    --hostname ec2-52-71-219-6.compute-1.amazonaws.com \
-    --adminConnectorPort 4444 \
-    --ldapPort 1389 \
-    --enableStartTls \
-    --ldapsPort 1636 \
-    --httpsPort 8443 \
-    --replicationPort 8989 \
-    --bootstrapReplicationServer ec2-52-71-219-6.compute-1.amazonaws.com:8989 \
-    --bootstrapReplicationServer ec2-52-26-251-242.us-west-2.compute.amazonaws.com:8989 \
-    --profile ds-evaluation \
-    --set ds-evaluation/generatedUsers:100 \
-    --profile am-config \
-    --set am-config/amConfigAdminPassword:password \
-    --profile am-cts \
-    --set am-cts/amCtsAdminPassword:password \
-    --profile am-identity-store \
-    --set am-identity-store/amIdentityStoreAdminPassword:password \
-    --profile idm-repo \
-    --set idm-repo/domain:forgerock.com \
-    --acceptLicense
+--serverId ds1 \
+--deploymentKey $DEPLOYMENT_KEY \
+--deploymentKeyPassword password \
+--rootUserDN uid=admin \
+--rootUserPassword password \
+--hostname ec2-52-71-219-6.compute-1.amazonaws.com \
+--adminConnectorPort 4444 \
+--ldapPort 1389 \
+--enableStartTls \
+--ldapsPort 1636 \
+--httpsPort 8443 \
+--replicationPort 8989 \
+--bootstrapReplicationServer ec2-52-71-219-6.compute-1.amazonaws.com:8989 \
+--bootstrapReplicationServer ec2-52-26-251-242.us-west-2.compute.amazonaws.com:8989 \
+--profile ds-evaluation \
+--set ds-evaluation/generatedUsers:100 \
+--profile am-config \
+--set am-config/amConfigAdminPassword:password \
+--profile am-cts \
+--set am-cts/amCtsAdminPassword:password \
+--profile am-identity-store \
+--set am-identity-store/amIdentityStoreAdminPassword:password \
+--profile idm-repo \
+--set idm-repo/domain:forgerock.com \
+--acceptLicense \
+--start
 
 cd cert
 keytool -exportcert \
-    -keystore ../config/keystore \
-    -storepass $(cat ../config/keystore.pin) \
-    -alias ssl-key-pair \
-    -rfc \
-    -file cert_ds1.pem
+-keystore ../config/keystore \
+-storepass $(cat ../config/keystore.pin) \
+-alias ssl-key-pair \
+-rfc \
+-file cert_ds1.pem
 
 cp /usr/lib/jvm/jdk-11-oracle-x64/lib/security/cacerts ./truststore
 keytool -storepasswd -keystore ./truststore
 
 keytool \
-    -importcert \
-    -file cert_ds1.pem \
-    -alias ds1 \
-    -keystore ./truststore
+-importcert \
+-file cert_ds1.pem \
+-alias ds1 \
+-keystore ./truststore
 
 keytool \
-    -importcert \
-    -file cert_ds2.pem \
-    -alias ds2 \
-    -keystore ./truststore
+-importcert \
+-file cert_ds2.pem \
+-alias ds2 \
+-keystore ./truststore
 ```
 **Setup Commands for DS2:**
 
@@ -114,7 +115,8 @@ echo $DEPLOYMENT_KEY
 --set am-identity-store/amIdentityStoreAdminPassword:password \
 --profile idm-repo \
 --set idm-repo/domain:forgerock.com \
---acceptLicense
+--acceptLicense \
+--start
 
 cd cert
 keytool -exportcert \

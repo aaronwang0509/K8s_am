@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tomcat-am-deployment
+  name: am-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tomcat-am
+      app: am
   template:
     metadata:
       labels:
-        app: tomcat-am
+        app: am
     spec:
       containers:
-      - name: tomcat-am
-        image: aaronwang0509/k8sam:1.1.7
+      - name: am
+        image: aaronwang0509/k8sam:1.1.15
         ports:
         - containerPort: 18080
 
@@ -22,11 +22,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tomcat-am-service
+  name: am-service
 spec:
   type: NodePort
   ports:
     - port: 18080
       nodePort: 30080
   selector:
-    app: tomcat-am
+    app: am

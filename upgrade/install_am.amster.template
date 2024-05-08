@@ -1,0 +1,19 @@
+install-openam \
+--serverUrl http://cdk.example.com:18080/openam \
+--adminPwd password \
+--acceptLicense \
+--cookieDomain example.com \
+--lbSiteName TestSite01 \
+--lbPrimaryUrl http://site.example.com:80/openam \
+--cfgDir /usr/local/tomcat/am/tam \
+--cfgStoreDirMgr uid=admin \
+--cfgStoreDirMgrPwd password \
+--cfgStore dirServer \
+--cfgStoreHost ec2-52-71-219-6.compute-1.amazonaws.com \
+--cfgStoreAdminPort 4444 \
+--cfgStorePort 1636 \
+--cfgStoreSsl SSL \
+--cfgStoreRootSuffix ou=am-config \
+--pwdEncKey MneLwkkOokJx58znp7QyvGmiawmc2vl4
+
+:exit

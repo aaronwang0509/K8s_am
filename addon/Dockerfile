@@ -21,9 +21,9 @@ COPY conf/setenv.sh /usr/local/tomcat/bin/
 RUN chmod +x /usr/local/tomcat/bin/*.sh
 
 # Copy Amster.zip into the working directory and unzip it
-COPY Amster-7.3.0.zip /usr/local/tomcat/
-RUN unzip /usr/local/tomcat/Amster-7.3.0.zip -d /usr/local/tomcat/amster
-RUN rm /usr/local/tomcat/Amster-7.3.0.zip
+COPY Amster-7.4.0.zip /usr/local/tomcat/
+RUN unzip /usr/local/tomcat/Amster-7.4.0.zip
+RUN rm /usr/local/tomcat/Amster-7.4.0.zip
 COPY install_am.amster.template /usr/local/tomcat/amster/
 
 # Copy init folder used for post installation
