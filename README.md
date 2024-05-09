@@ -226,7 +226,7 @@ kubectl apply -f deployment.yaml
 
 Cluster upgrade complete.
 
-## 4. Backup and Restore
+## 4. Backup and Rollback
 
 ### 4.1 Basic Flow
 
@@ -248,7 +248,7 @@ sudo cp -r ds717 ds717_bak0
 
 The AM instance is already backed up via the image.
 
-### 4.3 Restore
+### 4.3 Rollback
 
 #### 4.3.1 Rollback from Stage 2 to Stage 1
 
