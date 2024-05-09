@@ -230,7 +230,7 @@ Cluster upgrade complete.
 
 ### 4.1 Basic Flow
 
-This upgrade process can be divided into stages:
+This upgrade process can be divided into three stages:
 1. **Stage 0:** DS 7.1.7 and AM 7.1.4
 2. **Stage 1:** DS 7.4.1 and AM 7.1.4
 3. **Stage 2:** DS 7.4.1 and AM 7.4.0
