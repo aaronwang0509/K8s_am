@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: amup
-        image: aaronwang0509/k8sam:1.2.9
+        image: aaronwang0509/k8sam:1.2.10
         ports:
         - containerPort: 18080
       restartPolicy: Never

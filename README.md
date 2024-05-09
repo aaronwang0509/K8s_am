@@ -225,3 +225,72 @@ kubectl apply -f deployment.yaml
 ```
 
 Cluster upgrade complete.
+
+## 4. Backup and Restore
+
+### 4.1 Basic Flow
+
+This upgrade process can be divided into stages:
+1. **Stage 0:** DS 7.1.7 and AM 7.1.4
+2. **Stage 1:** DS 7.4.1 and AM 7.1.4
+3. **Stage 2:** DS 7.4.1 and AM 7.4.0
+
+In each stage, we will take a backup and can roll back to the last stage if needed.
+
+### 4.2 Backup
+
+At the end of section 1.2, before upgrading DS, take a snapshot of all DS replicas.
+
+```bash
+# ds1 and ds2
+sudo cp -r ds717 ds717_bak0
+```
+
+The AM instance is already backed up via the image.
+
+### 4.3 Restore
+
+#### 4.3.1 Rollback from Stage 2 to Stage 1
+
+```bash
+# Modify the deployment.yaml file back to the AM 7.1.4 image, then redeploy
+# image: aaronwang0509/k8sam:1.1.14
+cd ./k8s
+kubectl apply -f deployment.yaml
+```
+
+#### 4.3.2 Rollback from Stage 1 to Stage 0
+
+```bash
+# On each DS replica, stop DS, revert to the previous snapshot, and restart.
+
+./ds717/bin/stop-ds
+
+rm -rf ds717
+
+mv ds717_bak0 ds717
+
+sudo chown -R ec2-user:ec2-user ds717
+
+./ds717/bin/start-ds
+
+# On the main backup replica, run the synchronize command to keep data consistent.
+
+cd ds717/bin
+
+./dsrepl \
+initialize \
+--baseDN ou=am-config \
+--baseDN ou=tokens \
+--baseDN ou=identities \
+--toAllServers \
+--hostname localhost \
+--port 4444 \
+--bindDN uid=admin \
+--bindPassword password \
+--trustStorePath ../config/keystore \
+--trustStorePassword:file ../config/keystore.pin \
+--no-prompt
+```
+
+The system is now restored to the previous stage.

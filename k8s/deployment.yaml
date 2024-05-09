@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: am
-        image: aaronwang0509/k8sam:1.1.15
+        image: aaronwang0509/k8sam:1.1.17
         ports:
         - containerPort: 18080
 
